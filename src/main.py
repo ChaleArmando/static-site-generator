@@ -1,6 +1,6 @@
 from textnode import TextNode, TextType
 
-from htmlnode import HTMLNode
+from htmlnode import HTMLNode, LeafNode
 
 def main():
     test = TextNode("This a text node", TextType.BOLD, "https://www.boot.dev")
@@ -20,4 +20,9 @@ def main():
     print(test_html.props_to_html())
     print(test_html2.props_to_html())
     print(test_html3.props_to_html())
+
+    test_leaf = LeafNode("p", "Paragrapg Text Test")
+    test_leaf2 = LeafNode("a", "Click me!", {"href":"https://boot.dev"})
+    print(test_leaf.to_html())
+    print(test_leaf2.to_html())
 main()
