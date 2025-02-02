@@ -1,6 +1,6 @@
 from textnode import TextNode, TextType
 
-print('hello world')
+from htmlnode import HTMLNode
 
 def main():
     test = TextNode("This a text node", TextType.BOLD, "https://www.boot.dev")
@@ -11,4 +11,13 @@ def main():
     print(test2)
     print(test3)
 
+    test_html = HTMLNode("p", "Paragraph Text", ["a", "img"], {"href": "http://google.com", "target": "_blank"})
+    test_html2 = HTMLNode("h1", "Title Text", None, {"color": "red"})
+    test_html3 = HTMLNode("h2", "Title 2 Text")
+    print(test_html)
+    print(test_html2)
+    print(test_html3)
+    print(test_html.props_to_html())
+    print(test_html2.props_to_html())
+    print(test_html3.props_to_html())
 main()
