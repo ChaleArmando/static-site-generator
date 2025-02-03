@@ -1,6 +1,6 @@
 from textnode import TextNode, TextType
 
-from htmlnode import HTMLNode, LeafNode
+from htmlnode import HTMLNode, LeafNode, ParentNode
 
 def main():
     test = TextNode("This a text node", TextType.BOLD, "https://www.boot.dev")
@@ -25,4 +25,27 @@ def main():
     test_leaf2 = LeafNode("a", "Click me!", {"href":"https://boot.dev"})
     print(test_leaf.to_html())
     print(test_leaf2.to_html())
+
+    test_parent = ParentNode(
+        "p",
+        [
+            LeafNode("b", "Bold text"),
+            LeafNode(None, "Normal Text"),
+            LeafNode("i", "Italic text"),
+            LeafNode(None, "Normal Text Again"),
+            LeafNode("strong", "Important text")
+        ]
+    )
+
+    test_parent2 = ParentNode(
+        "p",
+        [
+            
+        ]
+    )
+    node = ParentNode("div",[ParentNode("span",[LeafNode("i","Italic Text"),LeafNode("b", "Bold Text")]), LeafNode("strong", "Important Text")])
+
+    print(test_parent.to_html())
+    print(test_parent2.to_html())
+    print(node.to_html())
 main()
