@@ -1,4 +1,4 @@
-from textnode import TextNode, TextType
+from textnode import TextNode, TextType, text_node_to_html_node
 
 from htmlnode import HTMLNode, LeafNode, ParentNode
 
@@ -48,4 +48,10 @@ def main():
     print(test_parent.to_html())
     print(test_parent2.to_html())
     print(node.to_html())
+
+    test_transf = TextNode("Alternate Image Text", TextType.IMAGE, "https://yahoo.com")
+    test_transf2 = TextNode("Click Me!", TextType.LINK, "https://yahoo.com")
+    print(text_node_to_html_node(test_transf).to_html())
+    print(text_node_to_html_node(test_transf2).to_html())
+
 main()
