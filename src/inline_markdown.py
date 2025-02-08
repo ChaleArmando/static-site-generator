@@ -79,6 +79,14 @@ def split_nodes_image(old_nodes):
                 nodes.append(TextNode(sections[-1], node_orig_type))
     return nodes
 text = "aaa ![to boot dev](https://www.boot.dev) and finish"
-#print(split_nodes_image([TextNode(text, TextType.CODE)]))
 
-#print(split_nodes_ref([TextNode(text, TextType.CODE)], TextType.IMAGE))
+def text_to_textnodes(text):
+    node = TextNode(text, TextType.TEXT)
+    new_nodes = []
+    new_nodes = split_nodes_delimiter([node], "**", TextType.BOLD)
+    new_nodes = split_nodes_delimiter(new_nodes, "*", TextType.ITALIC)
+    new_nodes = split_nodes_delimiter(new_nodes, "`", TextType.CODE)
+    new_nodes = split_nodes_ref(new_nodes,TextType.IMAGE)
+    new_nodes = split_nodes_ref(new_nodes, TextType.LINK)
+
+    return new_nodes
