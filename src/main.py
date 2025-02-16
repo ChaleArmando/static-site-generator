@@ -21,6 +21,7 @@ def copy_dir(src_path, target_path):
             shutil.copy(src, tgt)
 
 def copy_static():
+    print("Clean up Target Directory")
     target_path = "public/"
     src_path = "static/"
     if os.path.exists(src_path) != True: os.mkdir(src_path)
@@ -55,9 +56,22 @@ def generate_page(from_path, template_path, dest_path):
     with open(path, "x") as file_dest:
         file_dest.write(template)
 
+def generate_page_recursive(dir_path_content, template_path, dest_dir_path):
+    for file in os.listdir(dir_path_content):
+        full_path = os.path.join(dir_path_content,file)
+        if os.path.isdir(full_path):
+            new_path = os.path.join(dest_dir_path,file)
+            os.mkdir(new_path)
+            #print(new_path)
+            generate_page_recursive(full_path, template_path, new_path)
+        else:
+            src = os.path.join(dir_path_content,file)
+            generate_page(src,template_path,dest_dir_path)
+
 
 def main():
     copy_static()
-    generate_page("content/index.md", "template.html", "public/")
+    #generate_page("content/index.md", "template.html", "public/")
+    generate_page_recursive("content", "template.html", "public/")
 
 main()
