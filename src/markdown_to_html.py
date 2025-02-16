@@ -28,6 +28,7 @@ def heading_blocks(text):
 
 def code_blocks(text):
     new_text = text[3:-3]
+    new_text = new_text.strip("\n")
     child_nodes = text_to_children(new_text)
     node_code = ParentNode("code", child_nodes)
     node = ParentNode("pre", [node_code])
